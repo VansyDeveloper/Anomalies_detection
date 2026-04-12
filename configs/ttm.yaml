@@ -1,0 +1,6 @@
+model_name: ttm
+model_path: ibm-granite/granite-timeseries-ttm-r2
+device: mps
+context_len: 512
+prediction_len: 1
+batch_size: 32

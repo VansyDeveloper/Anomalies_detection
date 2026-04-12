@@ -1,0 +1,6 @@
+model_name: timesfm
+model_path: google/timesfm-1.0-200m
+device: mps
+context_len: 512
+prediction_len: 1
+batch_size: 32

@@ -1,0 +1,8 @@
+model_name: moirai
+model_path: Salesforce/moirai-1.0-R-base
+device: mps
+context_len: 1000
+prediction_len: 1
+patch_size: auto
+num_samples: 100
+batch_size: 32

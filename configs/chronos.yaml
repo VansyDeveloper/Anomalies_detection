@@ -1,0 +1,6 @@
+model_name: chronos
+model_path: amazon/chronos-t5-small
+device: mps
+context_len: 1000
+prediction_len: 1
+batch_size: 32
