@@ -1,5 +1,3 @@
-"""TimesFM model implementation."""
-
 from __future__ import annotations
 
 import torch
@@ -13,7 +11,6 @@ from models.base import BaseAnomalyModel, ModelType
 
 
 class TimesFMModel(BaseAnomalyModel):
-    """TimesFM forecasting model."""
 
     def __init__(
         self,

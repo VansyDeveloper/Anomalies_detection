@@ -8,8 +8,6 @@ from timeeval import DatasetManager as TimeEvalDatasetManager
 
 
 class DatasetManager:
-    """Simple wrapper around TimeEval DatasetManager."""
-
     def __init__(self, data_path: str | Path):
         self.data_path = Path(data_path)
         self.dm = TimeEvalDatasetManager(str(self.data_path))

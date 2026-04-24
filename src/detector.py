@@ -1,5 +1,3 @@
-"""Forecasting-based anomaly detector."""
-
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -20,14 +18,6 @@ class WindowSample:
 
 
 class ForecastingDataset(Dataset):
-    """
-    Sliding-window dataset for forecasting anomaly detection.
-
-    Input:
-        x: [context_len, num_features]
-        y: [prediction_len, num_features]
-    """
-
     def __init__(
         self,
         df: pd.DataFrame,
@@ -67,8 +57,6 @@ class ForecastingDataset(Dataset):
 
 
 class AnomalyDetector:
-    """Detector for forecasting foundation models."""
-
     def __init__(
         self,
         model,

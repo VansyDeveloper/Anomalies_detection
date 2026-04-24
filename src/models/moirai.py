@@ -1,5 +1,3 @@
-"""Moirai model implementation."""
-
 from __future__ import annotations
 
 import torch
@@ -9,8 +7,6 @@ from models.base import BaseAnomalyModel, ModelType
 
 
 class MoiraiModel(BaseAnomalyModel):
-    """Moirai forecasting model."""
-
     def __init__(
         self,
         model_path: str = "Salesforce/moirai-1.0-R-base",
@@ -53,7 +49,6 @@ class MoiraiModel(BaseAnomalyModel):
 
         batch_size, seq_len, num_features = inputs.shape
 
-        # Moirai expects additional dummy first step
         past_target = torch.cat(
             [
                 torch.zeros(
@@ -81,7 +76,6 @@ class MoiraiModel(BaseAnomalyModel):
                 past_is_pad=past_is_pad,
             )
 
-        # (B, num_samples, prediction_len, F) -> (B, prediction_len, F)
         predictions = model_output.mean(dim=1)[:, : self.prediction_len]
 
         return predictions

@@ -1,5 +1,3 @@
-"""Run anomaly detection for one model on one collection."""
-
 from __future__ import annotations
 
 import argparse
@@ -22,9 +20,6 @@ def load_config(config_path: str | Path) -> dict:
 
 
 def preprocess_dataframe(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Standardize feature columns, keep is_anomaly unchanged.
-    """
     if "is_anomaly" not in df.columns:
         raise ValueError("Input DataFrame must contain 'is_anomaly' column.")
 

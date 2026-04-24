@@ -1,5 +1,3 @@
-"""Evaluation utilities for anomaly detection."""
-
 from __future__ import annotations
 
 from pathlib import Path
@@ -17,10 +15,6 @@ def f1_score_custom(
     anomaly_rate: float = 0.05,
     adjust: bool = True,
 ) -> tuple[float, float, float]:
-    """
-    Compute precision, recall, F1 using threshold by anomaly_rate.
-    Optionally applies point-adjustment.
-    """
     y_true = y_true.astype(np.int32)
 
     gt_aug = np.concatenate([np.zeros(1), y_true, np.zeros(1)]).astype(np.int32)
@@ -57,7 +51,6 @@ def evaluate_predictions(
     y_scores: np.ndarray,
     verbose: bool = True,
 ) -> dict:
-    """Evaluate one concatenated prediction vector."""
     y_scores = np.nan_to_num(y_scores, nan=0.0)
 
     roc_auc = roc_auc_score(y_true, y_scores)
@@ -109,9 +102,6 @@ def evaluate_collection(
     data_path: str | Path,
     verbose: bool = True,
 ) -> dict:
-    """
-    Evaluate all predictions for one collection by concatenating all datasets.
-    """
     prediction_dir = Path(prediction_dir)
     dm = DatasetManager(data_path)
 
@@ -151,9 +141,6 @@ def evaluate_collection(
 
 
 def save_evaluation_results(results: dict, output_path: str | Path) -> None:
-    """
-    Save evaluation results for one collection into CSV.
-    """
     rows = []
     for mode, metrics in results.items():
         row = {"mode": mode}

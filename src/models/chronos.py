@@ -1,5 +1,3 @@
-"""Chronos model implementation."""
-
 from __future__ import annotations
 
 import torch
@@ -9,7 +7,6 @@ from models.base import BaseAnomalyModel, ModelType
 
 
 class ChronosModel(BaseAnomalyModel):
-    """Chronos forecasting model."""
 
     def __init__(
         self,
@@ -29,12 +26,9 @@ class ChronosModel(BaseAnomalyModel):
         self.num_samples = num_samples
 
     def load_model(self, model_path: str = None, **kwargs):
-        """Load pretrained Chronos model."""
         if model_path:
             self.model_path = model_path
 
-        # Chronos on macOS/MPS is often problematic because tokenizer uses CPU ops
-        # and some internal tensors stay on CPU. Force CPU for stability.
         device_map = "cpu" if self.device == "mps" else self.device
         dtype = torch.float32
 
@@ -45,13 +39,11 @@ class ChronosModel(BaseAnomalyModel):
         )
 
     def predict(self, inputs: torch.Tensor, **kwargs) -> torch.Tensor:
-        """Forward pass through Chronos model."""
         if self.model is None:
             raise ValueError("Model not loaded. Call load_model() first.")
 
         batch_size, context_len, num_features = inputs.shape
 
-        # Chronos tokenizer on macOS/MPS often expects CPU tensors
         inputs_reshaped = (
             inputs.permute(0, 2, 1)
             .reshape(batch_size * num_features, context_len)
@@ -76,5 +68,4 @@ class ChronosModel(BaseAnomalyModel):
 
         predictions = batch_predictions.permute(0, 2, 1)
 
-        # Return predictions on the same device as inputs
         return predictions.to(inputs.device)

@@ -12,5 +12,3 @@ __all__ = [
     "TimesFMModel",
     "TTMModel",
 ]'''
-
-# empty init file

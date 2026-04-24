@@ -1,5 +1,3 @@
-"""Base classes and interfaces for anomaly detection models."""
-
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -10,20 +8,11 @@ import torch
 
 
 class ModelType(Enum):
-    """Supported anomaly detection model types."""
 
     FORECASTING = "forecasting"
 
 
 class BaseAnomalyModel(ABC):
-    """
-    Base class for forecasting-based anomaly detection models.
-
-    All models must implement:
-    - load_model()
-    - predict()
-    """
-
     def __init__(
         self,
         model_type: ModelType = ModelType.FORECASTING,
@@ -52,15 +41,6 @@ class BaseAnomalyModel(ABC):
         inputs: torch.Tensor,
         batch: Optional[Dict[str, Any]] = None,
     ) -> torch.Tensor:
-        """
-        Predict future values.
-
-        Args:
-            inputs: tensor of shape (batch_size, context_len, num_features)
-
-        Returns:
-            tensor of shape (batch_size, prediction_len, num_features)
-        """
         raise NotImplementedError
 
     def __repr__(self) -> str:

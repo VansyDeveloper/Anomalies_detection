@@ -1,5 +1,3 @@
-"""TTM (TinyTimeMixer) model implementation."""
-
 from __future__ import annotations
 
 import torch
@@ -8,8 +6,6 @@ from models.base import BaseAnomalyModel, ModelType
 
 
 class TTMModel(BaseAnomalyModel):
-    """TinyTimeMixer forecasting model."""
-
     def __init__(
         self,
         model_path: str = "ibm-granite/granite-timeseries-ttm-r2",
